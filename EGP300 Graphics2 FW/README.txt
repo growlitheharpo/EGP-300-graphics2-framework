@@ -44,10 +44,15 @@ First-time use:
 	**DO NOT OPEN VISUAL STUDIO .VCXPROJ FILES, 
 	ONLY OPEN THE SOLUTION FILE!
 	
+	Alternatively to steps 2 and 4, run the batch
+	file named 'LAUNCH_VS2015' in the root folder
+	after closing all instances if Visual Studio.
+	
 	
 Note the following for all uses of the framework: 
 
-To open the framework, follow step 4 above.
+To open the framework, follow step 4 above (open 
+from solution directory or use the LAUNCH batch).
 
 The solution contains TWO projects: 
 	-egpfw: This is your back-end library. You 

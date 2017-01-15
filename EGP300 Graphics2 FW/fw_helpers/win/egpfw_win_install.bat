@@ -1,4 +1,5 @@
 @echo off
 cd "%~dp0"
 cd ../../
-SETX EGPFW_DIR "%cd%\\"
+setx EGPFW_DIR "%cd%\\"
+exit

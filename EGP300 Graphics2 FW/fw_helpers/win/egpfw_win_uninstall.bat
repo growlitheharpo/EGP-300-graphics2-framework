@@ -1,2 +1,3 @@
 @echo off
-REG delete HKCU\Environment /F /V EGPFW_DIR
+reg delete HKCU\Environment /F /V EGPFW_DIR
+exit
