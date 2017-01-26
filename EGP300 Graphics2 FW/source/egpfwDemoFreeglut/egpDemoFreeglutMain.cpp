@@ -34,6 +34,7 @@
 // framework includes
 
 #include "egpfw/egpfw.h"
+#include "../../project/VS2015/egpfw/vector3.h"
 
 
 //-----------------------------------------------------------------------------
@@ -590,8 +591,15 @@ int initIL()
 	return 1;
 }
 
-// entry function
 int main(int argc, char **argv)
+{
+	runVectorTestSuite();
+	system("pause");
+	return 0;
+}
+
+// entry function
+int foo(int argc, char **argv)
 {
 	// initialize graphics library
 	if (initGL(argc, argv))
@@ -624,6 +632,7 @@ int main(int argc, char **argv)
 
 	//	printf("\n\n");
 	//	system("pause");
+	return 0;
 }
 
 

@@ -22,6 +22,9 @@
     <Filter Include="Source Files\cpp">
       <UniqueIdentifier>{008ef152-8bb8-41d3-8c26-b1c4a33eeaee}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\week1">
+      <UniqueIdentifier>{91941537-292d-4a2e-8931-de50cf838272}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\include\egpfw\egpfw.h">
@@ -36,6 +39,9 @@
     <ClInclude Include="..\..\..\include\egpfw\egpfw\egpfwVertexBuffer.h">
       <Filter>Header Files\egpfw</Filter>
     </ClInclude>
+    <ClInclude Include="vector3.h">
+      <Filter>Source Files\week1</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\source\egpfw\egpfwPrimitiveDataSimple.c">
@@ -46,6 +52,9 @@
     </ClCompile>
     <ClCompile Include="..\..\..\source\egpfw\egpfwVertexBuffer.c">
       <Filter>Source Files\c</Filter>
+    </ClCompile>
+    <ClCompile Include="vector3.c">
+      <Filter>Source Files\week1</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
