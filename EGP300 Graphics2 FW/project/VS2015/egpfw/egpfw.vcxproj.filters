@@ -39,6 +39,9 @@
     <ClInclude Include="..\..\..\include\egpfw\egpfw\egpfwVertexBuffer.h">
       <Filter>Header Files\egpfw</Filter>
     </ClInclude>
+    <ClInclude Include="transformMatrix.h">
+      <Filter>Source Files\week1</Filter>
+    </ClInclude>
     <ClInclude Include="vector3.h">
       <Filter>Source Files\week1</Filter>
     </ClInclude>
@@ -54,6 +57,9 @@
       <Filter>Source Files\c</Filter>
     </ClCompile>
     <ClCompile Include="vector3.c">
+      <Filter>Source Files\week1</Filter>
+    </ClCompile>
+    <ClCompile Include="transformMatrix.c">
       <Filter>Source Files\week1</Filter>
     </ClCompile>
   </ItemGroup>

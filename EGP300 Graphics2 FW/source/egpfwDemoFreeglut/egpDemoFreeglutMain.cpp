@@ -35,6 +35,7 @@
 
 #include "egpfw/egpfw.h"
 #include "../../project/VS2015/egpfw/vector3.h"
+#include "../../project/VS2015/egpfw/transformMatrix.h"
 
 
 //-----------------------------------------------------------------------------
@@ -594,6 +595,7 @@ int initIL()
 int main(int argc, char **argv)
 {
 	runVectorTestSuite();
+	runTransformTestSuite();
 	system("pause");
 	return 0;
 }
