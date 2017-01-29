@@ -14,7 +14,7 @@
 		}																			\
 
 const Vector3 UP_VECTOR3 = { 0.0f, 0.0f, 1.0f };
-const Vector3 LEFT_VECTOR3 = { 1.0f, 0.0f, 0.0f };
+const Vector3 RIGHT_VECTOR3 = { 1.0f, 0.0f, 0.0f };
 const Vector3 FORWARD_VECTOR3 = { 0.0f, 1.0f, 0.0f };
 const Vector3 ZERO_VECTOR3 = { 0.0f, 0.0f, 0.0f };
 const Vector3 ONE_VECTOR3 = { 1.0f, 1.0f, 1.0f };
@@ -150,11 +150,11 @@ void runVectorTestSuite()
 		ASSERT_PASSED_TEST(expectedResult, actualResult, "add up+up");
 
 		setVector(&expectedResult, 1.0f, 0.0f, 1.0f);
-		actualResult = add(&UP_VECTOR3, &LEFT_VECTOR3);
+		actualResult = add(&UP_VECTOR3, &RIGHT_VECTOR3);
 		ASSERT_PASSED_TEST(expectedResult, actualResult, "add up+left");
 
 		setVector(&expectedResult, 1.0f, 1.0f, 0.0f);
-		actualResult = add(&FORWARD_VECTOR3, &LEFT_VECTOR3);
+		actualResult = add(&FORWARD_VECTOR3, &RIGHT_VECTOR3);
 		ASSERT_PASSED_TEST(expectedResult, actualResult, "add forward+left");
 
 		setVector(&expectedResult, 2.0f, 2.0f, 0.0f);
@@ -180,11 +180,11 @@ void runVectorTestSuite()
 		ASSERT_PASSED_TEST(expectedResult, actualResult, "sub up-up");
 
 		setVector(&expectedResult, -1.0f, 0.0f, 1.0f);
-		actualResult = subtract(&UP_VECTOR3, &LEFT_VECTOR3);
+		actualResult = subtract(&UP_VECTOR3, &RIGHT_VECTOR3);
 		ASSERT_PASSED_TEST(expectedResult, actualResult, "sub up-left");
 
 		setVector(&expectedResult, -1.0f, 1.0f, 0.0f);
-		actualResult = subtract(&FORWARD_VECTOR3, &LEFT_VECTOR3);
+		actualResult = subtract(&FORWARD_VECTOR3, &RIGHT_VECTOR3);
 		ASSERT_PASSED_TEST(expectedResult, actualResult, "sub forward-left");
 
 		setVector(&expectedResult, 0.0f, 0.0f, 0.0f);
@@ -276,7 +276,7 @@ void runVectorTestSuite()
 		assert(expectedFloat == actualFloat);
 
 		expectedFloat = 0.0f;
-		actualFloat = dot(&UP_VECTOR3, &LEFT_VECTOR3);
+		actualFloat = dot(&UP_VECTOR3, &RIGHT_VECTOR3);
 		assert(expectedFloat == actualFloat);
 
 		expectedFloat = -1.0f;
@@ -301,11 +301,11 @@ void runVectorTestSuite()
 
 	{	//TEST FOR CROSS
 		expectedResult = UP_VECTOR3;
-		actualResult = cross(&LEFT_VECTOR3, &FORWARD_VECTOR3);
+		actualResult = cross(&RIGHT_VECTOR3, &FORWARD_VECTOR3);
 		ASSERT_PASSED_TEST(expectedResult, actualResult, "cross leftxforward");
 
 		expectedResult = multiply(&UP_VECTOR3, -1.0f);
-		actualResult = cross(&FORWARD_VECTOR3, &LEFT_VECTOR3);
+		actualResult = cross(&FORWARD_VECTOR3, &RIGHT_VECTOR3);
 		ASSERT_PASSED_TEST(expectedResult, actualResult, "cross forwardxleft");
 
 		expectedResult = ZERO_VECTOR3;

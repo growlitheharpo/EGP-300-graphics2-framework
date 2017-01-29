@@ -26,7 +26,7 @@ void printVector(Vector3 const* vec, char end);
 void runVectorTestSuite();
 
 const extern Vector3 UP_VECTOR3;
-const extern Vector3 LEFT_VECTOR3;
+const extern Vector3 RIGHT_VECTOR3;
 const extern Vector3 FORWARD_VECTOR3;
 const extern Vector3 ZERO_VECTOR3;
 const extern Vector3 ONE_VECTOR3;
