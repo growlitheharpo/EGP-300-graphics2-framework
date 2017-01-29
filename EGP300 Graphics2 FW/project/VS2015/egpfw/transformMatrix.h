@@ -17,12 +17,18 @@ typedef struct TransformMatrix_struct
 		r3c1, r3c2, r3c3, r3c4;
 } TransformMatrix;
 
+void makeIdentiyMatrix(TransformMatrix* matrix);
+void makeXDirectionTransformMatrix(TransformMatrix* matrix, float amount);
+void makeYDirectionTransformMatrix(TransformMatrix* matrix, float amount);
+void makeZDirectionTransformMatrix(TransformMatrix* matrix, float amount);
 void makeTransformFromRotation(TransformMatrix* matrix, float pitch, float yaw, float roll);
 void makeTransformFromScale(TransformMatrix* matrix, float x, float y, float z);
 void makeTransformFromUniformScale(TransformMatrix* matrix, float uniformScale);
-void makeTransformFromTranslation(TransformMatrix* matrix, float dX, float xY, float dZ);
+void makeTransformFromTranslation(TransformMatrix* matrix, float dX, float dY, float dZ);
 void inverseTransform(TransformMatrix* matrix);
+int areTransformsEqual(TransformMatrix* a, TransformMatrix* b);
 void concatenateTransform(TransformMatrix* matrixOut, TransformMatrix* matrixLeft, TransformMatrix* matrixRight);
+
 void applyTransformToPoint(Vector3* pointInOut, TransformMatrix const* transform);
 
 void runTransformTestSuite();
