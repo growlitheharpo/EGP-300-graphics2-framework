@@ -89,21 +89,21 @@ cbtk::cbmath::vec4 cameraPosWorld(0.0f, 0.0f, cameraDistance, 1.0f), deltaCamPos
 // test vertex buffers for built-in primitive data
 enum VAOIndex
 {
-	sphere8x6VAO, sphere32x24VAO, cubeVAO, cubeWireVAO, cubeIndexedVAO, cubeWireIndexedVAO, 
+	sphere8x6VAO, sphere32x24VAO, cubeVAO, cubeWireVAO, cubeIndexedVAO, cubeWireIndexedVAO, quadVAO, discVAO,
 
 //-----------------------------
 	vaoCount
 };
 enum VBOIndex
 {
-	sphere8x6VBO, sphere32x24VBO, cubeVBO, cubeWireVBO, cubeIndexedVBO, cubeWireIndexedVBO, 
+	sphere8x6VBO, sphere32x24VBO, cubeVBO, cubeWireVBO, cubeIndexedVBO, cubeWireIndexedVBO, quadVBO, discVBO,
 
 //-----------------------------
 	vboCount
 };
 enum IBOIndex
 {
-	cubeIndexedIBO, cubeWireIndexedIBO, 
+	cubeIndexedIBO, cubeWireIndexedIBO, unitDiscIBO,
 
 //-----------------------------
 	iboCount
@@ -183,6 +183,18 @@ void setupGeometry()
 	// indexed wire cube
 	attribs[0].data = egpGetWireCubeIndexedPositions();
 	vao[cubeWireIndexedVAO] = egpCreateVAOInterleavedIndexed(PRIM_LINES, attribs, 1, egpGetCubeIndexedVertexCount(), (vbo + cubeWireIndexedVBO), INDEX_UINT, egpGetWireCubeIndexCount(), egpGetWireCubeIndices(), (ibo + cubeWireIndexedIBO));
+
+	attribs[0].data = egpfwGetUnitQuadPositions();
+	attribs[1].data = 0;
+	attribs[2].data = egpfwGetUnitQuadColors();
+	attribs[3].data = egpfwGetUnitQuadTexcoords();
+	vao[quadVAO] = egpCreateVAOInterleaved(PRIM_TRIANGLE_STRIP, attribs, 4, egpfwGetUnitQuadVertexCount(), (vbo + quadVBO), 0);
+
+	attribs[0].data = getUnitDiscPosition();
+	attribs[1].data = 0;
+	attribs[2].data = getUnitDiscColors();
+	attribs[3].data = getUnitDiscTexcoords();
+	vao[discVAO] = egpCreateVAOInterleavedIndexed(PRIM_TRIANGLES, attribs, 4, getUnitDiscVertexCount(), (vbo + discVBO), INDEX_UINT, getUnitDiscIndexCount(), egpGetUnitDiscIndices(), ibo + unitDiscIBO);
 }
 
 void deleteGeometry()
@@ -394,19 +406,22 @@ void renderGameState()
 
 			// draw 3D primitives with retained mode (VAOs, proper)
 		//	egpActivateVAO(vao + sphere8x6VAO);
-		//	egpActivateVAO(vao + sphere32x24VAO);
+			//egpActivateVAO(vao + sphere32x24VAO);
 		//	egpActivateVAO(vao + cubeVAO);
-		//	egpActivateVAO(vao + cubeWireVAO);
+			//egpActivateVAO(vao + cubeWireVAO);
 		//	egpActivateVAO(vao + cubeIndexedVAO);
 		//	egpActivateVAO(vao + cubeWireIndexedVAO);
-		//	egpDrawActiveVAO();
+
+			//egpActivateVAO(vao + quadVAO);
+			egpActivateVAO(vao + discVAO);
+			egpDrawActiveVAO();
 		}
 	}
 
 	// ****
 	// TEST YOUR SHAPES
 	{
-		egpfwDrawColoredTriangleImmediate(viewProjMat.m, 0);
+		//egpfwDrawColoredTriangleImmediate(viewProjMat.m, 0);
 	//	egpfwDrawColoredUnitQuadImmediate(viewProjMat.m, 0);
 	//	egpfwDrawTexturedUnitQuadImmediate(viewProjMat.m, 0);
 	}
@@ -592,6 +607,7 @@ int initIL()
 	return 1;
 }
 
+/*
 int main(int argc, char **argv)
 {
 	runVectorTestSuite();
@@ -599,9 +615,9 @@ int main(int argc, char **argv)
 	system("pause");
 	return 0;
 }
-
+*/
 // entry function
-int foo(int argc, char **argv)
+int main(int argc, char **argv)
 {
 	// initialize graphics library
 	if (initGL(argc, argv))

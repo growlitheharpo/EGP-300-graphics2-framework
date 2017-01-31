@@ -28,15 +28,15 @@ void egpfwDrawAxesImmediate(const float *mvp, const int mvpLoc)
 	// send attributes 1-by-1
 	// glVertex is used to send position and finish current vertex
 	// (the last attribute values sent will be used for this vertex)
-	glColor3f (1.0f, 0.0f, 0.0f);
+	glColor3f(1.0f, 0.0f, 0.0f);
 	glVertex3f(1.0f, 0.0f, 0.0f);
 	glVertex3f(0.0f, 0.0f, 0.0f);
 
-	glColor3f (0.0f, 1.0f, 0.0f);
+	glColor3f(0.0f, 1.0f, 0.0f);
 	glVertex3f(0.0f, 1.0f, 0.0f);
 	glVertex3f(0.0f, 0.0f, 0.0f);
 
-	glColor3f (0.0f, 0.0f, 1.0f);
+	glColor3f(0.0f, 0.0f, 1.0f);
 	glVertex3f(0.0f, 0.0f, 1.0f);
 	glVertex3f(0.0f, 0.0f, 0.0f);
 
@@ -100,7 +100,7 @@ void egpfwDrawColoredUnitQuadImmediate(const float *mvp, const int mvpLoc)
 
 	glColor3f(0.0f, 1.0f, 0.0f);
 	glVertex3f(-1.0f, 1.0f, 0.0f);
-	
+
 	glColor3f(1.0f, 0.0f, 0.0f);
 	glVertex3f(1.0f, -1.0f, 0.0f);
 
@@ -135,13 +135,22 @@ void egpfwDrawTexturedUnitQuadImmediate(const float *mvp, const int mvpLoc)
 // data should be arranged as TRIANGLE STRIP: use at most 4 vertices!
 #define quadNumVertices 4
 const float fwUnitQuadPositions[quadNumVertices * 3] = {
-	-1.0f, //...
+	-1.0f,-1.0f,0.0f,
+	1.0f,-1.0f,0.0f,
+	-1.0f,1.0f,0.0f,
+	1.0f,1.0f,0.0f
 };
 const float fwUnitQuadColors[quadNumVertices * 3] = {
-	0.0f, //...
+	0.0f,0.0f,0.0f,
+	1.0f,0.0f,0.0f,
+	0.0f,0.0f,0.0f,
+	1.0f,0.0f,0.0f,
 };
 const float fwUnitQuadTexcoords[quadNumVertices * 2] = {
-	0.0f, //...
+	0.0f, 0.0f,
+	0.0f, 0.0f,
+	0.0f, 0.0f,
+	0.0f, 0.0f
 };
 
 
@@ -170,6 +179,85 @@ unsigned int egpfwGetUnitQuadVertexCount()
 {
 	// this function is complete!
 	return quadNumVertices;
+}
+
+
+#define discNumVertices 9
+const float fwUnitDiscPositions[discNumVertices * 3] = {
+	0.0f, 0.0f, 0.0f,	//center			0
+	0.5f, -0.5f, 0.0f,	//down, right		1
+	0.75f, 0.0f, 0.0f,	//right				2
+	0.5f, 0.5f, 0.0f,	//up, right			3
+	0.0f, 0.75f, 0.0f,	//up				4
+	-0.5f, 0.5f, 0.0f,	//up, left			5
+	-0.75f, 0.0f, 0.0f,	//left				6
+	-0.5f, -0.5f, 0.0f,	//down, left		7
+	0.0f, -0.75, 0.0f,	//down				8
+};
+
+#define discNumIndicies 24
+const unsigned int fwUnitDiscIndicies[discNumIndicies] = {
+	0, 1, 2,
+	0, 2, 3,
+	0, 3, 4,
+	0, 4, 5,
+	0, 5, 6,
+	0, 6, 7,
+	0, 7, 8,
+	0, 8, 1
+};
+
+const float fwUnitDiscColors[discNumVertices * 3] = {
+	1.0f, 1.0f, 1.0f,
+	1.0f, 1.0f, 1.0f,
+	1.0f, 1.0f, 1.0f,
+	1.0f, 1.0f, 1.0f,
+	1.0f, 1.0f, 1.0f,
+	1.0f, 1.0f, 1.0f,
+	1.0f, 1.0f, 1.0f,
+	1.0f, 1.0f, 1.0f,
+	1.0f, 1.0f, 1.0f,
+};
+const float fwUnitDiscTexcoords[discNumVertices * 2] = {
+	0.0f, 0.0f,
+	0.0f, 0.0f,
+	0.0f, 0.0f,
+	0.0f, 0.0f,
+	0.0f, 0.0f,
+	0.0f, 0.0f,
+	0.0f, 0.0f,
+	0.0f, 0.0f,
+	0.0f, 0.0f,
+};
+
+const float* getUnitDiscPosition()
+{
+	return fwUnitDiscPositions;
+}
+
+const float* getUnitDiscColors()
+{
+	return fwUnitDiscColors;
+}
+
+const float* getUnitDiscTexcoords()
+{
+	return fwUnitDiscTexcoords;
+}
+
+unsigned getUnitDiscVertexCount()
+{
+	return discNumVertices;
+}
+
+unsigned getUnitDiscIndexCount()
+{
+	return discNumIndicies;
+}
+
+const unsigned* egpGetUnitDiscIndices()
+{
+	return fwUnitDiscIndicies;
 }
 
 
