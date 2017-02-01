@@ -130,7 +130,7 @@ void makeTransformFromTranslation(TransformMatrix* matrix, float dX, float dY, f
 	matrix->vals[2][3] = dZ;
 }
 
-void inverseTransform(TransformMatrix* matrix)
+void inverseUnscaledTransform(TransformMatrix* matrix)
 {
 	TransformMatrix rotTranspose;
 	copyMatrix(matrix, &rotTranspose);
@@ -270,11 +270,6 @@ void runTransformTestSuite()
 	printVector(&simplePoint, '\n');
 	printf("\n");
 
-	inverseTransform(&test);
-	applyTransformToPoint(&simplePoint, &test);
-	printVector(&simplePoint, '\n');
-	printf("\n");
-
 	TransformMatrix rotation, scale, translation;
 	simplePoint = UP_VECTOR3;
 
@@ -288,7 +283,7 @@ void runTransformTestSuite()
 	printVector(&simplePoint, '\n');
 	printf("\n");
 
-	inverseTransform(&finalResult);
+	inverseUnscaledTransform(&finalResult);
 	applyTransformToPoint(&simplePoint, &finalResult);
 	printVector(&simplePoint, '\n');
 	printf("\n");
