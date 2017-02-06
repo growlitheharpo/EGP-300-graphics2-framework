@@ -27,7 +27,7 @@ extern "C"
 	void makeTransformFromScale(TransformMatrix* matrix, float x, float y, float z);
 	void makeTransformFromUniformScale(TransformMatrix* matrix, float uniformScale);
 	void makeTransformFromTranslation(TransformMatrix* matrix, float dX, float dY, float dZ);
-	void inverseTransform(TransformMatrix* matrix);
+	void inverseTransformUnscaled(TransformMatrix* matrix);
 	int areTransformsEqual(TransformMatrix* a, TransformMatrix* b);
 	void multiplyMatrix(TransformMatrix* matrixOut, TransformMatrix* matrixLeft, TransformMatrix* matrixRight);
 	void concatenateTransform(TransformMatrix* matrixOut, TransformMatrix* scaleMatrix, TransformMatrix* rotationMatrix, TransformMatrix* translationMatrix);
