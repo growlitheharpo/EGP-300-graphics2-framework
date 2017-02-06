@@ -137,10 +137,10 @@ Quaternion::Quaternion(const Quaternion& other)
 
 Quaternion::Quaternion(float x, float y, float z, float w)
 {
-	vals[x] = x;
-	vals[y] = y;
-	vals[z] = z;
-	vals[w] = w;
+	vals[X] = x;
+	vals[Y] = y;
+	vals[Z] = z;
+	vals[W] = w;
 }
 
 Quaternion::~Quaternion()
@@ -248,6 +248,29 @@ TransformMatrix Quaternion::makeTransformationMatrix(const Quaternion& from)
 	return result;
 }
 
+Quaternion Quaternion::makeRotationZYX(float yaw, float pitch, float roll)
+{
+	//https://en.wikipedia.org/wiki/Conversion_between_quaternions_and_Euler_angles
+	float yawCos = cos(yaw / 2.0f);		//t0
+	float yawSin = sin(yaw / 2.0f);		//t1
+	float pitchCos = cos(pitch / 2.0f);	//t2
+	float pitchSin = sin(pitch / 2.0f);	//t3
+	float rollCos = cos(roll / 2.0f);	//t4
+	float rollSin = sin(roll / 2.0f);	//t5
+
+	float w = yawCos * pitchCos * rollCos + yawSin * pitchSin * rollSin;
+	float x = yawCos * pitchSin * rollCos - yawSin * pitchCos * rollSin;
+	float y = yawCos * pitchCos * rollSin + yawSin * pitchSin * rollCos;
+	float z = yawSin * pitchCos * rollCos - yawCos * pitchSin * rollSin;
+
+	return Quaternion(x, y, z, w);
+}
+
+Quaternion Quaternion::makeRotationXYZ(float x, float y, float z)
+{
+	return makeRotationX(x) * makeRotationY(y) * makeRotationZ(z);
+}
+
 Vector3 Quaternion::applyToPoint(const Vector3& point) const
 {
 	//I don't care about optimization hahahaha there's no stopping me now
@@ -270,6 +293,7 @@ Quaternion Quaternion::operator*(const Quaternion& other) const
 Quaternion Quaternion::operator=(const Quaternion& other)
 {
 	this->vals = other.vals;
+	return *this;
 }
 
 Quaternion& Quaternion::operator*=(const Quaternion& other)

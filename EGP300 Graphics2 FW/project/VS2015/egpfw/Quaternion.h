@@ -39,19 +39,17 @@ public:
 	static Quaternion lerp(const Quaternion& from, const Quaternion& to, float val);
 	static Quaternion slerp(const Quaternion& from, const Quaternion& to, float val);
 	static float dot(const Quaternion& from, const Quaternion& to);
-	
+
+	static Quaternion makeRotationZYX(float yaw, float pitch, float roll);
+	static Quaternion makeRotationXYZ(float x, float y, float z);
+	static Quaternion makeRotationX(float x) { return makeRotationZYX(0.0f, 0.0f, x); }
+	static Quaternion makeRotationY(float y) { return makeRotationZYX(0.0f, y, 0.0f); }
+	static Quaternion makeRotationZ(float z) { return makeRotationZYX(z, 0.0f, 0.0f); }
 	static TransformMatrix makeTransformationMatrix(const Quaternion& from);
 
 	void makeIdentity() { *this = identity(); }
 	void concatenate(const Quaternion& other) { *this = concatenate(*this, other); }
 	void inverse() { *this = inverse(*this); }
-
-	void makeRotationXYZ(float x, float y, float z);
-	void makeRotationZYX(float z, float y, float x);
-
-	void makeRotationX(float x) { makeRotationXYZ(x, 0.0f, 0.0f); }
-	void makeRotationY(float y) { makeRotationXYZ(0.0f, y, 0.0f); }
-	void makeRotationZ(float z) { makeRotationXYZ(0.0f, 0.0f, z); }
 
 	TransformMatrix getTransformationMatrix() const { return makeTransformationMatrix(*this); }
 
