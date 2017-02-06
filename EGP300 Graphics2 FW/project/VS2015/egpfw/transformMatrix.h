@@ -10,8 +10,7 @@ extern "C"
 	struct Vector3_struct;
 	typedef struct Vector3_struct Vector3;
 
-	typedef struct TransformMatrix_struct
-	{
+	typedef struct TransformMatrix_struct{
 		float vals[4][4];
 	} TransformMatrix;
 
