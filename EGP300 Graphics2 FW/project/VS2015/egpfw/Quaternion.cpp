@@ -258,10 +258,10 @@ Quaternion Quaternion::makeRotationZYX(float yaw, float pitch, float roll)
 	float rollCos = cos(roll / 2.0f);	//t4
 	float rollSin = sin(roll / 2.0f);	//t5
 
-	float w = yawCos * pitchCos * rollCos + yawSin * pitchSin * rollSin;
 	float x = yawCos * pitchSin * rollCos - yawSin * pitchCos * rollSin;
 	float y = yawCos * pitchCos * rollSin + yawSin * pitchSin * rollCos;
 	float z = yawSin * pitchCos * rollCos - yawCos * pitchSin * rollSin;
+	float w = yawCos * pitchCos * rollCos + yawSin * pitchSin * rollSin;
 
 	return Quaternion(x, y, z, w);
 }
